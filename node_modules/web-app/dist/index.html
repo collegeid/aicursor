@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flizzy OS - Next Gen Neural Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #020617;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #8b5cf6;
+            --text-dim: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(0, 240, 255, 0.2);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--accent-cyan);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 0.9;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 40%, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        /* --- CTA BUTTONS --- */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass-border);
+            color: white;
+            background: var(--glass);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            padding: 100px 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feat-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .feat-card:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+        }
+
+        .feat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+        }
+
+        .feat-card p {
+            color: var(--text-dim);
+        }
+
+        /* --- TEAM SECTION --- */
+        footer {
+            padding: 100px 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(2, 6, 23, 0.5);
+        }
+
+        .team-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-purple);
+            margin-bottom: 30px;
+        }
+
+        .member-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FLIZZY OS</div>
+        <div style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-dim);">
+            STABLE_BUILD: v3.1.0
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">Innovation in Human-Computer Interaction</div>
+        <h1>CONTROL WITH<br>YOUR VISION</h1>
+        <p>
+            Flizzy OS adalah sistem neural-interface berbasis MediaPipe yang memungkinkan 
+            kendali penuh perangkat digital hanya menggunakan pergerakan wajah dan mata. 
+            Solusi masa depan untuk aksesibilitas dan produktivitas tanpa batas.
+        </p>
+
+        <div class="cta-group">
+            <a href="demo.html" class="btn btn-primary">
+                Launch Live Demo
+            </a>
+            <a href="#" class="btn btn-outline">
+                Browser Extension
+            </a>
+            <a href="#" class="btn btn-outline">
+                Android APK
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feat-card">
+            <h3>Neural Cursor</h3>
+            <p>Algoritma 1 Euro Filter memastikan pergerakan kursor sangat halus, presisi, dan bebas getaran (jitter).</p>
+        </div>
+        <div class="feat-card">
+            <h3>Intelligent Blink</h3>
+            <p>Sistem deteksi kedipan pintar untuk simulasi klik kiri, klik kanan, hingga double-click secara natural.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Multi-Platform</h3>
+            <p>Tersedia sebagai Web App, Browser Extension, hingga Android Native untuk ekosistem kontrol yang luas.</p>
+        </div>
+    </section>
+
+    
+
+    <footer>
+        <div class="team-title">Engineered by Flizzy Vision Team</div>
+        <div class="member-list">
+            <div class="member-name">Febriansah Dirgantara</div>
+            <div class="member-name">Siswo Adi Nugroho</div>
+            <div class="member-name">Noval Prama Sentana</div>
+        </div>
+        <p style="margin-top: 50px; font-size: 0.8rem; color: var(--text-dim);">
+            &copy; 2026 Flizzy Interconnection Indonesia. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
