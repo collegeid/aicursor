@@ -215,6 +215,11 @@
                 <img src="https://cdn.simpleicons.org/twitch/9146FF" class="app-icon">
                 <span class="app-name">Twitch</span>
             </button>
+
+            <button class="app-card" onclick="openApp('Music.com', './music.html')">
+                <img src="https://cdn.simpleicons.org/spotify/1ED760" class="app-icon">
+                <span class="app-name">Music.com</span>
+            </button>
         </div>
     </main>
 
@@ -256,6 +261,34 @@
             frame.src = "";
             console.log("Neural Link Terminated");
         }
+
+  
+    // Fungsi untuk mengirim pesan klik ke dalam Iframe
+    function sendClickToApp(x, y) {
+        const frame = document.getElementById('appFrame');
+        if (frame && modal.style.display === 'flex') {
+            // Ambil posisi iframe di layar
+            const rect = frame.getBoundingClientRect();
+            
+            // Hitung posisi kursor relatif terhadap isi dalam iframe
+            const relativeX = x - rect.left;
+            const relativeY = y - rect.top;
+
+            // Kirim data ke music.html
+            frame.contentWindow.postMessage({
+                type: 'AI_CLICK',
+                x: relativeX,
+                y: relativeY
+            }, '*');
+        }
+    }
+
+    // Integrasi dengan sistem klik AI Anda
+    // Biasanya di main.ts Anda punya event 'click' atau gesture
+    document.addEventListener('mousedown', (e) => {
+        // Jika kursor sistem atau AI melakukan klik
+        sendClickToApp(e.clientX, e.clientY);
+    });
     </script>
 </body>
 </html>
